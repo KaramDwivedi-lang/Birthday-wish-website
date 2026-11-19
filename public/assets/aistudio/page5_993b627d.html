@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Make a Wish · Nehal</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,700;9..144,900&family=Outfit:wght@300;400;500;600&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="css/pages.css" />
+  <link rel="stylesheet" href="css/pages-nav.css" />
+</head>
+
+<body>
+  <canvas id="confetti" aria-hidden="true"></canvas>
+
+  <header class="site-header">
+    <span class="site-header__mark">For Nehal</span>
+    <span class="site-header__page">P5</span>
+  </header>
+
+  <main class="page-main">
+    <section class="wish" id="wish">
+      <div class="wish__inner">
+        <h2 class="section-title">Make a wish</h2>
+        <p class="section-sub">Tap the candles, then blow them out</p>
+
+        <div class="cake" id="cake">
+          <div class="cake__candles">
+            <button class="candle" aria-label="Candle 1" data-lit="true">
+              <span class="candle__flame"></span>
+            </button>
+            <button class="candle" aria-label="Candle 2" data-lit="true">
+              <span class="candle__flame"></span>
+            </button>
+            <button class="candle" aria-label="Candle 3" data-lit="true">
+              <span class="candle__flame"></span>
+            </button>
+          </div>
+          <div class="cake__body">
+            <div class="cake__frosting"></div>
+            <div class="cake__layer cake__layer--top"></div>
+            <div class="cake__layer cake__layer--mid"></div>
+            <div class="cake__layer cake__layer--base"></div>
+          </div>
+        </div>
+
+        <button class="btn btn--primary btn--blow" id="blowBtn" disabled>Blow out the candles</button>
+        <p class="wish__result" id="wishResult" hidden>
+          Your wish is on its way to the stars. Happy Birthday, Nehal!
+        </p>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <p>Made with love for birthday · 2026</p>
+      <button class="footer__replay" id="replayBtn">Start over from the beginning</button>
+    </footer>
+  </main>
+
+  <nav class="page-nav">
+    <a class="page-nav__link" href="page4.html">← Back</a>
+    <div class="page-nav__dots" aria-label="Page progress">
+      <span class="page-nav__dot"></span>
+      <span class="page-nav__dot"></span>
+      <span class="page-nav__dot"></span>
+      <span class="page-nav__dot"></span>
+      <span class="page-nav__dot page-nav__dot--active"></span>
+    </div>
+    <a class="page-nav__link page-nav__link--disabled" href="#">Next →</a>
+  </nav>
+
+  <script src="js/auth.js"></script>
+  <script src="js/pages.js"></script>
+</body>
+
+</html>
