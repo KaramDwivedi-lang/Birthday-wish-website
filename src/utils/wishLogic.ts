@@ -79,6 +79,21 @@ export function buildShareUrl(origin: string, wishId: string): string {
   return `${cleanOrigin}/?wish=${encodeURIComponent(wishId)}`;
 }
 
+export function buildQrDownloadFilename(recipientName: string, occasion: string): string {
+  const safeSlug = slugifyWishId(recipientName, occasion);
+  return `${safeSlug}-qr.png`;
+}
+
+export function isLocalhostUrl(url: string): boolean {
+  try {
+    const parsed = new URL(url);
+    const host = parsed.hostname.toLowerCase();
+    return host === 'localhost' || host === '127.0.0.1' || host === '::1' || host === '[::1]';
+  } catch {
+    return false;
+  }
+}
+
 export function buildWhatsAppShareHref(wish: Pick<WishConfig, 'recipientName' | 'occasion' | 'passwordEnabled' | 'passwordHint'>, shareUrl: string): string {
   const lines = [
     `I made a special ${wish.occasion.toLowerCase()} keepsake for ${wish.recipientName}!`,

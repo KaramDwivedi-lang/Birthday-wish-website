@@ -158,5 +158,100 @@
       "sound": true
     },
     "updatedAt": "2026-11-19T14:45:34.769Z"
+  },
+  "nehal-birthday-7fn4": {
+    "id": "nehal-birthday-7fn4",
+    "occasion": "Birthday",
+    "recipientName": "Nehal",
+    "senderName": "Brother",
+    "celebrationDate": "2026-11-19",
+    "dateDisplayFormat": "full",
+    "customDateLabel": "",
+    "passwordEnabled": true,
+    "password": "nehal",
+    "passwordHint": "Your first name, lowercase",
+    "gateTitle": "A special surprise awaits",
+    "gateSubtitle": "Enter the secret word to unlock your personal keepsake.",
+    "heroEyebrow": "A day worth celebrating",
+    "heroTagline": "Another year of laughter, kindness, and unforgettable moments.",
+    "heroPhotoUrl": "",
+    "messageTitle": "A note from your friend",
+    "messageGreeting": "Dear Nehal,",
+    "messageParagraphs": [
+      "On your special day, I wanted to create something just for you — a little corner of the internet that celebrates everything that makes you Lovely.",
+      "From the way you light up every room you walk into, to the late-night conversations and inside jokes only we understand — you've made life brighter, funnier, and infinitely more meaningful.",
+      "Here's to another year of adventures, dreams coming true, and memories we'll laugh about for years. You deserve all the happiness in the world."
+    ],
+    "messageSignOff": "Your Dear,",
+    "memoriesTitle": "Moments I treasure",
+    "memoriesSubtitle": "Little snapshots of our bond",
+    "memories": [
+      {
+        "id": "mem-1",
+        "title": "The First photo",
+        "date": "The Beginning",
+        "caption": "First time we built our bond and trust by sharing a pic with me — and trusting me, a trust that is never going to break.",
+        "imageUrl": "/src/assets/images/memory_first_photo_1795099193291.jpg",
+        "gradientIndex": 0
+      },
+      {
+        "id": "mem-2",
+        "title": "Late night talks",
+        "date": "Midnight Hours",
+        "caption": "Hours that felt like minutes — sharing dreams, fears, and everything in between.",
+        "imageUrl": "/src/assets/images/memory_late_night_1795099194043.jpg",
+        "gradientIndex": 1
+      },
+      {
+        "id": "mem-3",
+        "title": "Your birthday last year",
+        "date": "Last Year",
+        "caption": "The surprise, the cake fight, and you pretending to be mad while smiling the whole time.",
+        "imageUrl": "/src/assets/images/memory_cake_celebration_1795099193617.jpg",
+        "gradientIndex": 2
+      },
+      {
+        "id": "mem-4",
+        "title": "Every ordinary day",
+        "date": "Always",
+        "caption": "Because friendship isn't just the big moments — it's showing up, always.",
+        "imageUrl": "",
+        "gradientIndex": 3
+      }
+    ],
+    "wishTitle": "Make a wish",
+    "wishSubtitle": "Tap the candles, then blow them out",
+    "wishResultText": "Your wish is on its way to the stars. Happy Birthday, Nehal!",
+    "candleCount": 3,
+    "cakeBanner": {
+      "enabled": true,
+      "text": "It's your birthday!",
+      "fontId": "pacifico",
+      "textColor": "#faf6f0",
+      "backgroundColor": "#c44736"
+    },
+    "footerText": "Made with love for birthday · 2026",
+    "themeId": "golden-celebration",
+    "colors": {
+      "background": "#faf6f0",
+      "surface": "#0f3d3c",
+      "ink": "#0f3d3c",
+      "accent": "#e86f5c",
+      "secondary": "#e8a849"
+    },
+    "fontPairId": "fraunces-outfit",
+    "effects": {
+      "confetti": true,
+      "sound": true,
+      "animations": true,
+      "musicTrackId": "joyful-birthday-chime"
+    },
+    "countdown": {
+      "enabled": true,
+      "targetDateTime": "2026-11-20T00:00",
+      "label": "Counting down to the midnight toast",
+      "reachedText": "The celebration moment has arrived!"
+    },
+    "updatedAt": "2026-11-19T16:02:37.013Z"
   }
 }

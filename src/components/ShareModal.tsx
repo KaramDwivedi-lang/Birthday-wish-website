@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Check, Copy, Download, Mail, MessageCircle, Sparkles, X } from 'lucide-react';
+import { Check, Copy, Download, Mail, MessageCircle, QrCode, Sparkles, X } from 'lucide-react';
 import type { WishConfig } from '../types/wish';
 import { generateStandaloneWishHtml } from '../utils/htmlExporter';
 import {
@@ -16,6 +16,7 @@ interface ShareModalProps {
   lastSavedId: string | null;
   onSaveNewCopy: () => Promise<void>;
   onUpdateExisting: () => Promise<void>;
+  onOpenQr: () => void;
   onClose: () => void;
 }
 
@@ -27,6 +28,7 @@ export function ShareModal({
   lastSavedId,
   onSaveNewCopy,
   onUpdateExisting,
+  onOpenQr,
   onClose,
 }: ShareModalProps) {
   const [copiedType, setCopiedType] = useState<'link' | 'whatsapp' | 'email' | null>(null);
@@ -202,19 +204,29 @@ export function ShareModal({
             </button>
           </div>
 
-          <div className="pt-4 border-t border-slate-200 flex items-center justify-between gap-3">
+          <div className="pt-4 border-t border-slate-200 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
             <div className="text-xs text-slate-500">
-              <p className="font-semibold text-slate-700">Offline / Email Attachment</p>
-              <p>Download as a self-contained interactive HTML page.</p>
+              <p className="font-semibold text-slate-700">Offline / QR Sharing</p>
+              <p>Download interactive HTML or open a scannable QR code.</p>
             </div>
-            <button
-              type="button"
-              onClick={handleDownloadHtml}
-              className="px-3.5 py-2 rounded-md border border-slate-300 bg-white text-xs font-semibold text-slate-800 hover:bg-slate-50 cursor-pointer inline-flex items-center gap-1.5 whitespace-nowrap shrink-0"
-            >
-              <Download className="w-3.5 h-3.5" />
-              <span>Download HTML</span>
-            </button>
+            <div className="flex items-center justify-end gap-2 shrink-0">
+              <button
+                type="button"
+                onClick={handleDownloadHtml}
+                className="px-3 py-2 rounded-md border border-slate-300 bg-white text-xs font-semibold text-slate-800 hover:bg-slate-50 cursor-pointer inline-flex items-center gap-1.5 whitespace-nowrap shrink-0"
+              >
+                <Download className="w-3.5 h-3.5" />
+                <span>Download HTML</span>
+              </button>
+              <button
+                type="button"
+                onClick={onOpenQr}
+                className="px-3 py-2 rounded-md bg-red-600 text-white text-xs font-semibold hover:bg-red-700 cursor-pointer inline-flex items-center gap-1.5 whitespace-nowrap shrink-0 shadow-sm"
+              >
+                <QrCode className="w-3.5 h-3.5" aria-hidden="true" />
+                <span>QR code sharing</span>
+              </button>
+            </div>
           </div>
         </div>
       </div>

@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState, type CSSProperties } from 'react';
+import { QrCode } from 'lucide-react';
 import { AmbientMusicPlayer } from './components/AmbientMusicPlayer';
 import { BottomPageNav } from './components/BottomPageNav';
 import { CelebrationBackdrop } from './components/CelebrationBackdrop';
@@ -13,6 +14,7 @@ import { Page2Hero } from './components/Page2Hero';
 import { Page3Message } from './components/Page3Message';
 import { Page4Memories } from './components/Page4Memories';
 import { Page5Cake } from './components/Page5Cake';
+import { QrCodeModal } from './components/QrCodeModal';
 import { ShareModal } from './components/ShareModal';
 import { WishHeader } from './components/WishHeader';
 import { DEFAULT_WISH } from './data/presets';
@@ -41,6 +43,7 @@ export default function App() {
   const [isEditing, setIsEditing] = useState(false);
   const [editorTab, setEditorTab] = useState<EditorTab>('basics');
   const [shareOpen, setShareOpen] = useState(false);
+  const [qrModalOpen, setQrModalOpen] = useState(false);
   const [isSaving, setIsSaving] = useState(false);
   const [saveError, setSaveError] = useState('');
   const [lastSavedId, setLastSavedId] = useState<string | null>(null);
@@ -247,6 +250,16 @@ export default function App() {
     }
   };
 
+  const handleOpenQrShare = async () => {
+    setShareOpen(false);
+    setQrModalOpen(true);
+    if (!lastSavedId || lastSavedId === DEFAULT_WISH.id) {
+      await saveAsNewCopy();
+    } else {
+      await updateExistingWish();
+    }
+  };
+
   const handleResetDefault = () => {
     const reset = sanitizeWishConfig(DEFAULT_WISH);
     setWish(reset);
@@ -375,6 +388,18 @@ export default function App() {
         </main>
       </div>
 
+      {!shareOpen && !qrModalOpen && (
+        <button
+          type="button"
+          onClick={() => void handleOpenQrShare()}
+          aria-label="QR code sharing"
+          className="fixed bottom-[76px] sm:bottom-20 right-4 sm:right-6 z-40 px-3.5 py-2 rounded-full bg-red-600 hover:bg-red-700 text-white text-xs font-semibold shadow-lg border border-red-400/40 inline-flex items-center gap-1.5 cursor-pointer transition-transform hover:-translate-y-0.5 focus-visible:outline-2 focus-visible:outline-red-600 focus-visible:outline-offset-2"
+        >
+          <QrCode className="w-3.5 h-3.5 shrink-0" aria-hidden="true" />
+          <span>QR code sharing</span>
+        </button>
+      )}
+
       <ShareModal
         wish={wish}
         isOpen={shareOpen}
@@ -383,7 +408,17 @@ export default function App() {
         lastSavedId={lastSavedId}
         onSaveNewCopy={saveAsNewCopy}
         onUpdateExisting={updateExistingWish}
+        onOpenQr={() => void handleOpenQrShare()}
         onClose={() => setShareOpen(false)}
+      />
+
+      <QrCodeModal
+        wish={wish}
+        isOpen={qrModalOpen}
+        isSaving={isSaving}
+        saveError={saveError}
+        lastSavedId={lastSavedId}
+        onClose={() => setQrModalOpen(false)}
       />
     </div>
   );

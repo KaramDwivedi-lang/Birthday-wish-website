@@ -2,6 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import {
   buildMailtoShareHref,
+  buildQrDownloadFilename,
   buildShareUrl,
   buildWhatsAppShareHref,
   computeCountdownRemaining,
@@ -10,10 +11,12 @@ import {
   getContrastTextColor,
   getMusicTrack,
   isHexColorDark,
+  isLocalhostUrl,
   sanitizeWishConfig,
   slugifyWishId,
   verifyWishPassword,
 } from './wishLogic';
+import { generateQrPngDataUrl } from './qrCode';
 import { DEFAULT_WISH, MUSIC_TRACKS } from '../data/presets';
 
 test('verifyWishPassword matches case-insensitively and trims whitespace', () => {
@@ -105,3 +108,15 @@ test('computeCountdownRemaining calculates future units, zero crossing, and inva
   assert.equal(invalid.isValid, false);
   assert.equal(invalid.isReached, false);
 });
+
+test('QR helpers generate clean PNG filenames, detect localhost, and produce PNG data URLs', async () => {
+  assert.equal(buildQrDownloadFilename('Nehal Sharma!', 'Birthday'), 'nehal-sharma-birthday-qr.png');
+  assert.equal(isLocalhostUrl('http://localhost:3000/?wish=nehal-birthday'), true);
+  assert.equal(isLocalhostUrl('http://127.0.0.1:3000/?wish=nehal-birthday'), true);
+  assert.equal(isLocalhostUrl('https://keepsake.example.com/?wish=nehal-birthday'), false);
+
+  const dataUrl = await generateQrPngDataUrl('https://keepsake.example.com/?wish=nehal-birthday');
+  assert.ok(dataUrl.startsWith('data:image/png;base64,'));
+  assert.ok(dataUrl.length > 200);
+});
+
